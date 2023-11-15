@@ -1,0 +1,17 @@
+Autor: Jaderson Barrozo Nascimento
+Descrição: Projeto realizado como teste para empresa Tokio Marine
+
+Anotações:
+Estou assumindo que o banco para o qual trabalho só tem uma agência e vou trabalhar só com as contas. Ex: Nubank
+
+Back-end
+- Coloquei as regras das taxas no banco de dados para que sejam mais fáceis de serem mudadas caso hajam alterações no
+negócio
+- Fiz a instalação do checkstyle para manter padronização de código
+- Estou realizando todos os cálculos mais importantes no back-end pois não confio na precisão matemática do javascript
+kkkkkkkkk
+- Vou utilizar uma simples implementação de MVC para criação da api rest
+- Adicionei o Lombok para aumentar a eficiência na produção de código diminuindo a quantidade de linhas
+-Preferi colocar o nome do campo que se refere ao dia em que aconteceu o agendamento como data_criacao e o dia que a
+transferencia aconteceu como data_transferencia para ter mais sentido, pois tentei usar data_agendamento e data_transferencia
+e acabei julgando redundante demais.
