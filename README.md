@@ -4,6 +4,12 @@ Descrição: Projeto realizado como teste para empresa Tokio Marine
 Utilizei Angular 16, pois a versão 17 ainda tem muitas imcompatilibilidades com bibliotecas que gosto de utilizar e isso
 acaba sendo normal por ser uma versão recente. NgBootstrap ainda não tem versão para Angular 17 e gosto de NgBootstrap.
 
+Estou a utilizar o Java 17, pois é uma das versões mais recentes que trabalho e vem com todas as vantagens de segurança e produtividade que a
+nova versão tem. Estou a utilizar checkstyle como monitor de código a fim de
+manter padrão na escrita e monitoramento para caso esqueça algum import ou
+deixe algo para trás.
+
+Fim uma implementação básica de MVC tanto no back quanto no front e realizei testes simples com Jest aqui no back-end. No front não me ative a testar muito.
 
 Anotações:
 Estou a assumir que o banco para o qual trabalho só tem uma agência e vou trabalhar só com as contas. Ex: Nubank
