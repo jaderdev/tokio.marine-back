@@ -1,4 +1,4 @@
-package com.jader.tokio.marine.transferencias.models;
+package com.jader.tokio.marine.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

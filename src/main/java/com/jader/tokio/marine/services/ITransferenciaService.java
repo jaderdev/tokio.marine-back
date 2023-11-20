@@ -1,6 +1,6 @@
 package com.jader.tokio.marine.services;
 
-import com.jader.tokio.marine.transferencias.models.Transferencia;
+import com.jader.tokio.marine.models.Transferencia;
 
 import java.util.List;
 import java.util.Optional;

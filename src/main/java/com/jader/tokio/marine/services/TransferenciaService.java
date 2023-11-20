@@ -2,10 +2,9 @@ package com.jader.tokio.marine.services;
 
 import com.jader.tokio.marine.repositories.ITaxasTransferenciaRepository;
 import com.jader.tokio.marine.repositories.ITransferenciaRepository;
-import com.jader.tokio.marine.transferencias.models.TaxasTransferencia;
-import com.jader.tokio.marine.transferencias.models.Transferencia;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.jader.tokio.marine.models.TaxasTransferencia;
+import com.jader.tokio.marine.models.Transferencia;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
@@ -14,8 +13,6 @@ import java.util.Optional;
 
 @Service
 public class TransferenciaService implements ITransferenciaService {
-
-    Logger log = LoggerFactory.getLogger(Transferencia.class);
     @Autowired
     private ITransferenciaRepository repository;
 
@@ -27,18 +24,17 @@ public class TransferenciaService implements ITransferenciaService {
         return this.repository.save(transferencia);
     }
 
-    private BigDecimal getTaxaFromTransferencia(Transferencia transferencia){
+    private BigDecimal getTaxaFromTransferencia(@Valid Transferencia transferencia){
         int interval = transferencia.getDateInterval();
         List<TaxasTransferencia> taxa = this.taxasRepository.findAll().stream().filter((taxasTransferencia) ->
                 ( interval >= taxasTransferencia.getDe() && interval <= taxasTransferencia.getAte())).toList();
 
         if(taxa.isEmpty()){
-            throw new RuntimeException("Não foi encontrada taxa aplicável!");
+            throw new RuntimeException("Não foi encontrada taxa aplicável! Número de dias maior que o limite "+
+                    "ou menor que zero");
         }
 
-        BigDecimal valor  = new BigDecimal(taxa.get(0).getTaxa());
-
-        return valor;
+        return new BigDecimal(taxa.get(0).getTaxa());
     }
     @Override
     public Optional<Transferencia> findById(String tranferenciaId) {

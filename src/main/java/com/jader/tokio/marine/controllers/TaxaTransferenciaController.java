@@ -1,20 +1,16 @@
 package com.jader.tokio.marine.controllers;
 
 import com.jader.tokio.marine.repositories.ITaxasTransferenciaRepository;
-import com.jader.tokio.marine.services.ITransferenciaService;
-import com.jader.tokio.marine.transferencias.models.TaxasTransferencia;
-import com.jader.tokio.marine.transferencias.models.Transferencia;
-import jakarta.validation.Valid;
+import com.jader.tokio.marine.models.TaxasTransferencia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
@@ -25,6 +21,6 @@ public class TaxaTransferenciaController {
 
     @GetMapping("/taxas/transferencia")
     public ResponseEntity<List<TaxasTransferencia>> getAllTaxaTransferencias() {
-        return new ResponseEntity<List<TaxasTransferencia>>(repository.findAll(),HttpStatus.OK);
+        return new ResponseEntity<>(repository.findAll(),HttpStatus.OK);
     }
 }

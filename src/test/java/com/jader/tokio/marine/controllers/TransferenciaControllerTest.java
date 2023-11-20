@@ -1,7 +1,7 @@
 package com.jader.tokio.marine.controllers;
 
 import com.jader.tokio.marine.Application;
-import com.jader.tokio.marine.transferencias.models.Transferencia;
+import com.jader.tokio.marine.models.Transferencia;
 import jakarta.inject.Inject;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -39,7 +39,7 @@ class TransferenciaControllerTest {
     @Test
     void getAllTransferencias() {
         HttpHeaders headers = new HttpHeaders();
-        HttpEntity<String> entity = new HttpEntity<String>(null, headers);
+        HttpEntity<String> entity = new HttpEntity<>(null, headers);
 
         ResponseEntity<String> response = testRestTemplate.exchange(
                 getRootUrl()+"/transferencias",

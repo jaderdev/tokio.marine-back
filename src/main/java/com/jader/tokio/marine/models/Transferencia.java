@@ -1,15 +1,18 @@
-package com.jader.tokio.marine.transferencias.models;
+package com.jader.tokio.marine.models;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.ReadOnlyProperty;
-
 import java.math.BigDecimal;
-import java.util.Calendar;
 import java.util.Date;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
@@ -26,7 +29,7 @@ public class Transferencia {
     @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean agendada = true;
 
-    @Column(nullable = true, columnDefinition = "varchar(10)")
+    @Column(columnDefinition = "varchar(10)")
     @Pattern(regexp = "^[0-9]{10}$")
     @Length(min = 10, max = 10)
     private String contaOrigem;
@@ -50,6 +53,10 @@ public class Transferencia {
     private Date dataCriacao = new Date();
 
     public int getDateInterval(){
+        if(getDataTransferencia().getTime() < getDataCriacao().getTime()){
+            throw new RuntimeException("A data de transferência não deve ser menor que a data de criação!");
+        }
+
         long startTime = dataCriacao.getTime();
         long endTime = dataTransferencia.getTime();
 
