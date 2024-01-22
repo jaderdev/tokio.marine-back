@@ -1,5 +1,1 @@
-TODO: 
-- Trocar a fonte
-- Icone Hamburguer
-- configurar pontos e virgulas no dinheiro
-- Cor dos botões e notificações em geral
+Aplicação de back end feita para a tokio marine
