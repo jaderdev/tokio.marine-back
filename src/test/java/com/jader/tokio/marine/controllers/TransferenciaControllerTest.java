@@ -57,7 +57,7 @@ class TransferenciaControllerTest {
 
     @Test
     void addTransferencia() {
-        Transferencia transferencia = new Transferencia();
+        Transferencia transferencia = Transferencia.builder().build();
         transferencia.setTaxa(new BigDecimal("0.1"));
         transferencia.setValor(new BigDecimal("100.00"));
         transferencia.setContaDestino("09823423098");

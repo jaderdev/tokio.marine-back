@@ -7,9 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.ReadOnlyProperty;
 import java.math.BigDecimal;
@@ -17,11 +15,14 @@ import java.util.Date;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Getter
+@Builder()
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
 @Setter
-@ToString
+@Getter
 @Table(name = "transferencias")
 public class Transferencia {
+
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
@@ -40,10 +41,10 @@ public class Transferencia {
     @Length(min = 10, max = 10)
     private String contaDestino;
 
-    @Column(nullable = false, precision=10, scale=2)
+    @Column(nullable = false, precision=10, scale=3)
     private BigDecimal taxa;
 
-    @Column(nullable = false, precision=10, scale=2)
+    @Column(nullable = false, precision=10, scale=3)
     private BigDecimal valor;
 
     @Column(nullable = false)

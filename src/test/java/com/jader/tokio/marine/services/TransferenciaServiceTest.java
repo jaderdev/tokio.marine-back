@@ -27,10 +27,11 @@ class TransferenciaServiceTest {
     ITransferenciaService service;
     @Test
     void save() {
-        Transferencia transferencia = new Transferencia();
-        transferencia.setValor(new BigDecimal("1000.00"));
-        transferencia.setContaDestino("3409834578");
-        transferencia.setContaOrigem("0000000000");
+        Transferencia transferencia = Transferencia.builder()
+                .valor(new BigDecimal("1000.00"))
+                .contaDestino("3409834578")
+                .contaOrigem("0000000000")
+                .build();
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, 2023);

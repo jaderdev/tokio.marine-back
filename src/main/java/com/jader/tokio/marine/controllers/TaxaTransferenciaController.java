@@ -1,5 +1,7 @@
 package com.jader.tokio.marine.controllers;
 
+import com.jader.tokio.marine.mappers.Mapper;
+import com.jader.tokio.marine.models.dto.TaxasTransferenciaDTO;
 import com.jader.tokio.marine.repositories.ITaxasTransferenciaRepository;
 import com.jader.tokio.marine.models.TaxasTransferencia;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +14,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+import static java.util.stream.Collectors.toList;
+
+@CrossOrigin(origins = "${cors}", maxAge = 3600)
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/taxas/transferencia")
 public class TaxaTransferenciaController {
     @Autowired
     private ITaxasTransferenciaRepository repository;
+    @Autowired
+    Mapper mapper;
 
-    @GetMapping("/taxas/transferencia")
-    public ResponseEntity<List<TaxasTransferencia>> getAllTaxaTransferencias() {
-        return new ResponseEntity<>(repository.findAll(),HttpStatus.OK);
+    @GetMapping
+    public ResponseEntity<List<TaxasTransferenciaDTO>> getAllTaxaTransferencias() {
+        return new ResponseEntity<>(
+                repository.findAll().stream().map(mapper::toTaxaTransferenciaDTO).collect(toList())
+                ,HttpStatus.OK);
     }
 }

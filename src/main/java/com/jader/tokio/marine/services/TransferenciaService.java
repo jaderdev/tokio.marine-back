@@ -5,6 +5,8 @@ import com.jader.tokio.marine.repositories.ITransferenciaRepository;
 import com.jader.tokio.marine.models.TaxasTransferencia;
 import com.jader.tokio.marine.models.Transferencia;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
@@ -16,10 +18,13 @@ public class TransferenciaService implements ITransferenciaService {
     @Autowired
     private ITransferenciaRepository repository;
 
+    Logger logger = LoggerFactory.getLogger(Transferencia.class);
+
     @Autowired
     private ITaxasTransferenciaRepository taxasRepository;
 
-    public Transferencia save( Transferencia transferencia){
+    public Transferencia save(Transferencia transferencia){
+        logger.debug(getTaxaFromTransferencia(transferencia).toString());
         transferencia.setTaxa(getTaxaFromTransferencia(transferencia));
         return this.repository.save(transferencia);
     }
